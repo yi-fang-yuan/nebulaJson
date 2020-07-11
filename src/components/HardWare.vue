@@ -65,6 +65,8 @@
         },
         props:["computerData"],
         computed:{
+            //Each of the following method calculates the usage of each category including their representation in percentage
+            //I made sure to leave only 2 decimal places so it is more user friendly.
             getRAM:function(){
                 let ramTotal, ramUsed, ramPercent
                 ramTotal = this.computerData.Info.Resources.MemPhysical*(9.3132*10**(-10))

@@ -2,6 +2,8 @@
  <div>
   <div class="user" v-for="(value,name) in jsonData" v-bind:key="value.info">
      <h1>Worker  {{name}}, host {{value.Info.Hostname}} </h1>
+
+<!--   Each ComputerData represents a user-->
       <HardWare v-bind:computerData="value" />
   </div>
  </div>
@@ -22,6 +24,7 @@
          }
         },
         computed:{
+         //return the Json data in JS object format
          jsonData : function(){
            let stringified = JSON.stringify(this.user)
            let obj = JSON.parse(stringified);
