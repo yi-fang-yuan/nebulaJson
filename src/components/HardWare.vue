@@ -89,8 +89,8 @@
                 virtualTotal =  (this.computerData.Info.Resources.MemPhysical +  this.computerData.Info.Resources.MemSwap) * (9.3132*10**(-10))
                 virtualPercent = (virtualUsed/virtualTotal) * 100
                 virtualPercent = virtualPercent.toFixed()
-                virtualUsed = virtualUsed.toFixed()
-                virtualTotal = virtualTotal.toFixed()
+                virtualUsed = virtualUsed.toFixed(2)
+                virtualTotal = virtualTotal.toFixed(2)
                 return [virtualPercent, virtualUsed, virtualTotal]
             },
         }
