@@ -1,6 +1,6 @@
 <template>
  <div>
-  <div class="user" v-for="(value,name) in jsonData" v-bind:key="value.info">
+  <div class="user" v-for="(value,name) in this.user" v-bind:key="value.info">
      <h1>Worker  {{name}}, host {{value.Info.Hostname}} </h1>
 
 <!--   Each ComputerData represents a user-->
@@ -11,8 +11,8 @@
 </template>
 
 <script>
+    import axios from "axios";
     import HardWare from "./HardWare";
- import userInfo from '../assets/data.json'
     export default {
         name: "UserComputer",
         components: {
@@ -20,19 +20,25 @@
         },
         data() {
          return {
-          user: userInfo,
+          user: {},
          }
         },
-        computed:{
-         //return the Json data in JS object format
-         jsonData : function(){
-           let stringified = JSON.stringify(this.user)
-           let obj = JSON.parse(stringified);
-           obj = obj['result']
-           return obj
+        async created(){
+            const config = {
+              headers:{
+                Accept: "application/json"
+              }
+            };
+            try {
+              const res = await axios.post("https://nbtest.free.beeceptor.com/miner",config);
+              console.log(res.data.result)
+              this.user = res.data.result
+            
+            }catch(err){
+              console.log(err);
+            }
 
-         }
-        }
+        },
 
     }
 </script>
